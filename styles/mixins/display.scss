@@ -1,0 +1,9 @@
+@import '../vars';
+
+@mixin flex($direction: row, $justify: flex-start, $align: flex-start, $gap: $gap) {
+  display: flex;
+  justify-content: $justify;
+  align-items: $align;
+  flex-direction: $direction;
+  gap: $gap;
+}
