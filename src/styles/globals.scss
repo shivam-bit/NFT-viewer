@@ -22,8 +22,15 @@ a {
     color-scheme: dark;
   }
   body {
-    color: white;
-    // background: #161334;
-    background: $radial-gradient-1;
+    // color: $color-gradient-08;
+
+    // background: $color-black;
+  }
+  h1 {
+    background: linear-gradient(60deg, #e21143, #ffb03a);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    //   background-clip: text;
+    // color: transparent;
   }
 }
