@@ -1,0 +1,69 @@
+$color-gradient-01: linear-gradient(
+  to bottom,
+  #70a2ff 0%,
+  #72f6d1 21.88%,
+  #76e268 47.92%,
+  #ffd505 72.4%,
+  #f76e64 100%
+);
+$color-gradient-02: linear-gradient(to bottom, #70a2ff 0%, #f76e64 100%);
+$color-gradient-03: linear-gradient(
+  to bottom,
+  #70a2ff 0%,
+  #72e5da 28.65%,
+  #72f6d1 50.52%,
+  #76e268 100%
+);
+$color-gradient-04: linear-gradient(to bottom, #ffd505 0%, #f44336 100%);
+$color-gradient-05: linear-gradient(to bottom, #76e268 0%, #ffd505 100%);
+$color-gradient-06: linear-gradient(
+  to bottom,
+  #8ad4ec 0%,
+  #ef96ff 21.74%,
+  #ff56a9 54.03%,
+  #ffaa6c 85.28%
+);
+$color-gradient-07: linear-gradient(to bottom, #70a2ff 0%, #54f0d1 100%);
+$color-gradient-08: linear-gradient(
+  to bottom,
+  #a9cdff 0%,
+  #72f6d1 21.88%,
+  #a0ed8d 55.73%,
+  #fed365 81.77%,
+  #faa49e 100%
+);
+$color-gradient-9: linear-gradient(
+  to bottom,
+  #607b84 0%,
+  #39153f 29.54%,
+  #510b2e 54.03%,
+  #672d03 85.28%
+);
+
+$radial-gradient-1: radial-gradient(
+  circle at -8.9% 51.2%,
+  rgb(255, 124, 0) 0%,
+  rgb(255, 124, 0) 15.9%,
+  rgb(255, 163, 77) 15.9%,
+  rgb(255, 163, 77) 24.4%,
+  rgb(19, 30, 37) 24.5%,
+  rgb(19, 30, 37) 66%
+);
+
+$radial-gradient-2: radial-gradient(
+  328px at 2.9% 15%,
+  rgb(191, 224, 251) 0%,
+  rgb(232, 233, 251) 25.8%,
+  rgb(252, 239, 250) 50.8%,
+  rgb(234, 251, 251) 77.6%,
+  rgb(240, 251, 244) 100.7%
+);
+
+$radial-gradient-3: radial-gradient(
+  328px at 2.9% 15%,
+  rgb(85, 105, 117) 0%,
+  rgb(51, 72, 85) 25.8%,
+  rgb(36, 55, 67) 50.8%,
+  rgb(19, 30, 37) 77.6%,
+  rgb(19, 30, 37) 100.7%
+);

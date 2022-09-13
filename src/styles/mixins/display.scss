@@ -1,0 +1,14 @@
+@import '../vars';
+
+@mixin flex(
+  $direction: row,
+  $justify: flex-start,
+  $align: flex-start,
+  $gap: 1em
+) {
+  display: flex;
+  justify-content: $justify;
+  align-items: $align;
+  flex-direction: $direction;
+  gap: $gap;
+}
