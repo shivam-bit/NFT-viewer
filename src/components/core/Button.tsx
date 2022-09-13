@@ -12,7 +12,6 @@ const Button: any = ({triggerOnClick,children}) => {
   return (
         <button 
         className="confetti-button"
-        
         onClick={onClickHandler}
         >
             {children}
