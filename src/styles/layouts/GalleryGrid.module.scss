@@ -1,0 +1,14 @@
+@import './grid';
+
+.grid {
+  @extend .grid-3-columns;
+  justify-items: center;
+  align-items: center;
+  width: 100%;
+}
+
+.grid > * {
+  //   background-color: red;
+  justify-self: center;
+  align-self: center;
+}

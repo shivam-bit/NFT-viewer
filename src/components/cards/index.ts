@@ -1,2 +1,3 @@
 import ConnectCard from "./ConnectCard";
-export { ConnectCard } ;
+import NftCard from './NftCard';
+export { ConnectCard, NftCard } ;

@@ -4,13 +4,17 @@ import { useRouter } from 'next/router'
 import {useContext,useEffect} from 'react';
 import {AppContext} from "src/context/";
 import styles from 'src/styles/Home.module.scss'
-import {Button,Navbar,ConnectCard} from '../src/components';
-
+import {Button,Navbar,NftCard} from '../src/components';
+import { GalleryGrid } from '/src/layout/';
+import axiosInstance from '/src/utils/axios';
+import NftSDKInstance from '/src/services//NftSdk';
 const Home: NextPage = () => {
-  const {activateConfetti,isConnected} = useContext(AppContext);
+  const {activateConfetti,isConnected,walletAddress,activeChain
+} = useContext(AppContext);
   const router = useRouter();
   useEffect(() => {
-    if(!isConnected) router.push('/');
+    if(!isConnected) router.replace('/');
+    NftSDKInstance.getWalletCollections(walletAddress,activeChain).then(console.log)
   },[]);
   return (
 <div className={styles.container}>
@@ -21,7 +25,14 @@ const Home: NextPage = () => {
       </Head>
       <Navbar/>
       <main className={styles.main}>
-        
+        <GalleryGrid>
+        <NftCard/>
+        <NftCard/>
+        <NftCard/>
+        <NftCard/>
+        <NftCard/>
+        <NftCard/>
+        </GalleryGrid>
       </main>
     </div>
     
