@@ -1,3 +1,4 @@
 import Button from "./Button";
 import Canvas from "./Canvas";
-export { Button,Canvas } ;
+import EmojiImage from "./EmojiImage";
+export { Button,Canvas,EmojiImage } ;

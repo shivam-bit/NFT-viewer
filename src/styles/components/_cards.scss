@@ -1,0 +1,19 @@
+@import '../mixins/';
+@import '../vars/';
+
+.card {
+  @include flex(
+    $direction: column,
+    $justify: center,
+    $align: center,
+    $gap: 1em
+  );
+  border-radius: $regular-radius;
+  border: 1px solid #fff;
+  background: rgba(255, 255, 255, 0.24);
+  backdrop-filter: blur(16px);
+  padding: 1.5em 1em;
+  margin: 1em;
+  max-width: 21em;
+  text-align: center;
+}
