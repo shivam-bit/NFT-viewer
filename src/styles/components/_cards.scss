@@ -16,4 +16,9 @@
   margin: 1em;
   max-width: fit-content;
   text-align: center;
+
+  &-title {
+    font-weight: $font-semi-bold;
+    font-size: $font-large;
+  }
 }

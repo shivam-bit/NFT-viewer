@@ -2,9 +2,8 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import Script from 'next/script'
 import styles from 'src/styles/Home.module.scss'
-import {Button,Canvas,Navbar,ConnectCard} from '../src/components';
+import {Button,Navbar,ConnectCard} from '../src/components';
 import confettiObject from '../src/utils/confetti';
-import {AppContextProvider} from 'src/context/App';
 const Home: NextPage = () => {
   const printSomething = () => {
     // console.log(MetamaskInstance)
@@ -15,7 +14,6 @@ const Home: NextPage = () => {
   }
   
   return (
-    <AppContextProvider>
 <div className={styles.container}>
       <Head>
         <title>Create Next App</title>
@@ -23,15 +21,12 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Navbar/>
-      <Canvas/>
-      {/* <Script src="../src/components/core/confetti-falling-animation/confetti.js" strategy="lazyOnload" /> */}
       <main className={styles.main}>
         <ConnectCard/>
-        <Button triggerOnClick={printSomething}> asbxsaxha</Button>
+        <Button triggerOnClick={printSomething}> Confetti button</Button>
   
       </main>
     </div>
-    </AppContextProvider>
     
   )
 }

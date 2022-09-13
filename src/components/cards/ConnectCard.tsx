@@ -26,7 +26,7 @@ const ConnectCard: any = (props) => {
       width={200}
       height={200}
     />
-    <h2>Connect your MetaMask Wallet</h2>
+    <div className='card-title'>Connect your MetaMask Wallet</div>
     <Button triggerOnClick={connectWallet} className="connect-wallet"> 
     Connect Wallet
     </Button>
