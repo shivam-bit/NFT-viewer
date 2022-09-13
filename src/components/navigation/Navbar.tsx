@@ -1,6 +1,6 @@
 import styles from "./Navigation.module.scss"
 import { useState,useContext } from "react"
-import {AppContext} from "src/context/App.tsx";
+import {AppContext} from "src/context/";
 const Navbar: any = () => {
   const {supportedChains,activeChain,setActiveChain} = useContext(AppContext);
 

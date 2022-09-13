@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import {AppContext} from "src/context/App.tsx";
+import {AppContext} from "src/context/";
 import { EmojiImage,Button } from 'src/components';
 import Image from 'next/image';
 import styles from './ConnectCard.module.scss';

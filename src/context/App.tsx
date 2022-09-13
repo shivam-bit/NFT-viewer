@@ -1,16 +1,22 @@
 import React, {createContext, useState} from 'react';
+import {SUPPORTED_CHAINS} from 'src/constants/';
+import confettiObject from 'src/utils/confetti';
 
 export const AppContext = createContext({});
 
 export const AppContextProvider = ({children}) => {
-    const supportedChains = [
-        'Polygon','ETH_Mainet','Ropsten','Goerli','Rinkeby'
-      ]
+    const supportedChains = SUPPORTED_CHAINS;
     
     const [walletAddress, setWalletAddress] = useState("");
     const [isConnected, setIsConnected] = useState(false);
-    const [activeChain, setActiveChain] = useState('Polygon')
+    const [activeChain, setActiveChain] = useState(SUPPORTED_CHAINS[0]);
 
+    const activateConfetti = () => {
+        confettiObject.startConfettiInner();
+        setTimeout(() => {
+            confettiObject.stopConfettiInner();
+        }, 3*1000);
+    }
     const value = {
         walletAddress,
         setWalletAddress,
@@ -18,7 +24,8 @@ export const AppContextProvider = ({children}) => {
         setIsConnected,
         activeChain,
         setActiveChain,
-        supportedChains
+        supportedChains,
+        activateConfetti
     }
     return <AppContext.Provider value={value}>{children}</AppContext.Provider>
 }

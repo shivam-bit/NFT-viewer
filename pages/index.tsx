@@ -1,18 +1,13 @@
-import type { NextPage } from 'next'
-import Head from 'next/head'
-import Script from 'next/script'
+import type { NextPage } from 'next';
+import Head from 'next/head';
+import {useContext} from 'react';
+import {AppContext} from "src/context/";
 import styles from 'src/styles/Home.module.scss'
 import {Button,Navbar,ConnectCard} from '../src/components';
-import confettiObject from '../src/utils/confetti';
+
 const Home: NextPage = () => {
-  const printSomething = () => {
-    // console.log(MetamaskInstance)
-    confettiObject.startConfettiInner();
-    setTimeout(() => {
-      confettiObject.stopConfettiInner();
-    }, 3*1000);
-  }
-  
+  const {activateConfetti} = useContext(AppContext);
+
   return (
 <div className={styles.container}>
       <Head>
@@ -23,7 +18,7 @@ const Home: NextPage = () => {
       <Navbar/>
       <main className={styles.main}>
         <ConnectCard/>
-        <Button triggerOnClick={printSomething}> Confetti button</Button>
+        <Button triggerOnClick={activateConfetti}> Confetti button</Button>
   
       </main>
     </div>
