@@ -2,6 +2,10 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
+  images: {
+    dangerouslyAllowSVG: true,
+    domains: ['ipfs.moralis.io','ipfs.io']
+  },
   typescript: {
     // !! WARN !!
     // Dangerously allow production builds to successfully complete even if

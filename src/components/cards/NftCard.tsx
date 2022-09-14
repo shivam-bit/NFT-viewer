@@ -1,26 +1,26 @@
-import React, {useContext} from 'react';
-import {AppContext} from "src/context/";
-import { EmojiImage,Button } from 'src/components';
+import React, { useContext } from 'react';
+import { AppContext } from 'src/context/';
+import { EmojiImage, Button } from 'src/components';
 import Image from 'next/image';
 import styles from './ConnectCard.module.scss';
-import metamaskInstance from 'src/services/MetaMask';
+import { formatNftImageUrl } from 'src/utils/responseFormatting';
 
-
-const NftCard: any = (props) => {
-  const {walletAddress,isConnected,setWalletAddress,setIsConnected} = useContext(AppContext);
-        
+const NftCard: any = ({ nftMetaDta }) => {
+  const { walletAddress, isConnected, setWalletAddress, setIsConnected } =
+    useContext(AppContext);
+  // console.log(nftMetaDta)
   return (
-    <div className='card'>
-            <Image
-      src="/metamask-fox.svg"
-      width={200}
-      height={200}
-    />
-        {/* <div className='card-title'>Connect your MetaMask Wallet</div>  */}
-        <p>Connect your MetaMask Wallet</p> 
+    <div className="card">
+      <Image
+        src={formatNftImageUrl(nftMetaDta?.image)}
+        width={200}
+        height={200}
+        style={{ borderRadius: '6px' }}
+      />
+      <div className="card-title">{nftMetaDta?.name}</div>
+      <div className="card-description">{nftMetaDta?.description}</div>
     </div>
-  )
-}
+  );
+};
 
 export default NftCard;
-
