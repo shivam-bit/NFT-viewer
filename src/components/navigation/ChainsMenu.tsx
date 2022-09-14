@@ -1,9 +1,10 @@
-import styles from "./Navigation.module.scss"
+import styles from "./ChainsMenu.module.scss"
 import { useState,useContext } from "react"
-import {AppContext} from "src/context/";
-const Navbar: any = () => {
-  const {supportedChains,activeChain,setActiveChain} = useContext(AppContext);
-
+import {AppContext,UserContext} from "src/context/";
+const ChainMenu: any = () => {
+  const {supportedChains} = useContext(AppContext);
+  const {activeChain,setActiveChain} = useContext(UserContext);
+  
   return (
         <nav 
         className={styles.navbar}
@@ -23,4 +24,4 @@ const Navbar: any = () => {
   )
 }
 
-export default Navbar;
+export default ChainMenu;

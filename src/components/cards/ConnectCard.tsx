@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import {AppContext} from "src/context/";
+import {AppContext,UserContext} from "src/context/";
 import { EmojiImage,Button } from 'src/components';
 import Image from 'next/image';
 import styles from './ConnectCard.module.scss';
@@ -7,8 +7,8 @@ import metamaskInstance from 'src/services/MetaMask';
 
 
 const ConnectCard: any = (props) => {
-  const {walletAddress,isConnected,setWalletAddress,setIsConnected} = useContext(AppContext);
-
+  const {setIsConnected} = useContext(AppContext);
+  const {setWalletAddress} = useContext(UserContext);
     const connectWallet = async (e) => {
         const accounts = await metamaskInstance.onClickConnect();
         // console.log("🚀 ~ file: ConnectCard.tsx ~ line 16 ~ connectWal ~ accounts", accounts);

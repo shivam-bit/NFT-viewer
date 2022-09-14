@@ -19,17 +19,23 @@ export default async function handler(
   res: NextApiResponse<Data>
 ) {
     try{
-      const {wallet,chain} =req.query;
-      console.log(chain)
-      const response = await Moralis.EvmApi.nft.getWalletNFTCollections({
+      const {wallet,chain,collections,cursor} =req.query;
+      const response = await Moralis.EvmApi.nft.getWalletNFTs({
         address: wallet,
         chain: EvmChain[chain.toUpperCase()],
+        token_addresses: collections,
+        limit: 50,
+        cursor:cursor,
       })
-      // console.log(response.toJSON())
-      return res.status(200).json(response)
+      const data  = response.toJSON()
+      console.log((await response.next()).pagination)
+      return res.status(200).json({
+        ...response.pagination,
+        data
+      })
       }catch(err){
         console.error(err.message);
-
+        
       }
   
 }

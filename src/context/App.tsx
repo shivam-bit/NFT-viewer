@@ -6,10 +6,10 @@ export const AppContext = createContext({});
 
 export const AppContextProvider = ({children}) => {
     const supportedChains = SUPPORTED_CHAINS;
-    
-    const [walletAddress, setWalletAddress] = useState("0xFd7736371d52725527294844b95aA92bBD4B8724");
+
     const [isConnected, setIsConnected] = useState(true);
-    const [activeChain, setActiveChain] = useState(SUPPORTED_CHAINS[0]);
+    const [collectionsLoading, setCollectionsLoading] = useState(false);
+    const [nftsLoading, setNftsLoading] = useState(false);
 
     const activateConfetti = () => {
         confettiObject.startConfettiInner();
@@ -17,15 +17,16 @@ export const AppContextProvider = ({children}) => {
             confettiObject.stopConfettiInner();
         }, 3*1000);
     }
+
     const value = {
-        walletAddress,
-        setWalletAddress,
         isConnected,
         setIsConnected,
-        activeChain,
-        setActiveChain,
         supportedChains,
-        activateConfetti
+        activateConfetti,
+        collectionsLoading, 
+        setCollectionsLoading,
+        nftsLoading, 
+        setNftsLoading
     }
     return <AppContext.Provider value={value}>{children}</AppContext.Provider>
 }
