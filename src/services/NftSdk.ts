@@ -9,6 +9,7 @@ class NftSDK{
     this.allCollections=[];
   }
   async getWalletCollections(walletAddress: string,activeChain:string){
+    console.log({walletAddress,activeChain})
     try{
       const response = await axiosInstance.get('/wallet/collection',{
         params:{

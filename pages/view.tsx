@@ -31,10 +31,11 @@ const Home: NextPage = () => {
 
   const loadMoreNfts = () => {
     console.log('🚀 ~ load more nfts');
-    // NftSDKInstance.getNext().then((response) => {
-    //   console.log('🚀 ~ file: view.tsx ~ line 46 ~.then ~ response', response);
-    //   setNftsArray([...nftsArray, ...response.result]);
-    // });
+    NftSDKInstance.getNext().then((response) => {
+      console.log('🚀 ~ file: view.tsx ~ line 46 ~.then ~ response', response);
+      setNftsArray([...nftsArray, ...response.result]);
+      setMoreResultsAvailable(NftSDKInstance.moreNftsAvailable());
+    });
   };
   useEffect(() => {
     NftSDKInstance.getAllNFTsOfWallet(

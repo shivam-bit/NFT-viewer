@@ -5,14 +5,9 @@ import { AppContext, UserContext } from 'src/context/';
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
 import NftSDKInstance from '/src/services/NftSdk';
-// import { colourOptions } from '../data';
 
 const animatedComponents = makeAnimated();
-// const options = [
-//     { id:0, value: 'red', label: 'red' },
-//     { id:1, value: 'yellow', label: 'yellow' },
-//     { id:2, value: 'brown', label: 'brown' }
-//   ]
+
 const CollectionsSelect: any = () => {
   const {
     walletAddress,
@@ -29,6 +24,7 @@ const CollectionsSelect: any = () => {
     setActiveCollections([...value]);
   };
   useEffect(() => {
+    console.log(walletAddress);
     setCollectionsLoading(true);
     NftSDKInstance.getWalletCollections(walletAddress, activeChain)
       .then((userCollections) => {
@@ -42,18 +38,8 @@ const CollectionsSelect: any = () => {
       .finally(() => {
         setCollectionsLoading(false);
       });
-  }, [activeChain]);
-  // useEffect(() => {
-  //   NftSDKInstance.getAllNFTsOfWallet(
-  //     walletAddress,
-  //     activeChain,
-  //     activeCollections,
-  //     allCollections
-  //   ).then((response) => {
-  //     // console.log('🚀 ~ file: view.tsx ~ line 46 ~.then ~ response', response);
-  //     setNftsArray([...response.result]);
-  //   });
-  // }, [activeCollections]);
+  }, [activeChain, walletAddress]);
+
   return (
     <div
       style={{

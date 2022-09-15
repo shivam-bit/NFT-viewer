@@ -5,9 +5,7 @@ export const UserContext = createContext({});
 
 export const UserContextProvider = ({ children }) => {
   // 0xFd7736371d52725527294844b95aA92bBD4B8724
-  const [walletAddress, setWalletAddress] = useState(
-    '0xFd7736371d52725527294844b95aA92bBD4B8724'
-  );
+  const [walletAddress, setWalletAddress] = useState('');
   const [activeChain, setActiveChain] = useState(SUPPORTED_CHAINS[0]);
   const [allCollections, setAllCollections] = useState([]);
   const [activeCollections, setActiveCollections] = useState([]);
