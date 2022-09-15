@@ -3,6 +3,10 @@ import {formatForReactSelect,convertMetadataToObject} from 'src/utils/responseFo
 class NftSDK{
   constructor(){
     this.cursor="";
+    this.walletAddress="";
+    this.activeChain="";
+    this.activeCollections=[];
+    this.allCollections=[];
   }
   async getWalletCollections(walletAddress: string,activeChain:string){
     try{
@@ -20,10 +24,8 @@ class NftSDK{
       console.error(err.message);
     }
   }
-  async getAllNFTsOfWallet(walletAddress: string,activeChain:string,activeCollections,allCollections){
-    
+  async getAllNFTsOfWallet(walletAddress: string,activeChain:string,activeCollections,allCollections,cursor){
     try{
-
       const extractCollectionId = collection => collection.value;
       const collections = activeCollections?activeCollections.map(extractCollectionId):allCollections.map(extractCollectionId);
       const response = await axiosInstance.get('/wallet/nfts',{
@@ -31,10 +33,16 @@ class NftSDK{
             wallet: walletAddress,
             chain: activeChain,
             collections: ([...collections] || []).map((n) => `token_addresses=${n}`).join('&'),
-            cursor:this.cursor,
+            cursor:cursor || "",
         },
       })
+
       this.cursor = response?.data?.cursor;
+      this.walletAddress=walletAddress;
+      this.activeChain=activeChain;
+      this.activeCollections=[...activeCollections];
+      this.allCollections=[...allCollections];
+
       // console.log({response});
       // console.log(convertMetadataToObject(response?.data?.result))
       console.log({response});
@@ -44,7 +52,13 @@ class NftSDK{
       console.error(err.message);
     }
   }
-  async resetCursor(){
+  async getNext(){
+    return this.getAllNFTsOfWallet(this.walletAddress,this.activeChain,this.activeCollections,this.allCollections,this.cursor);
+  }
+  moreNftsAvailable(){
+    return Boolean(this.cursor);
+  }
+  resetCursor(){
     this.cursor="";
   }
 }

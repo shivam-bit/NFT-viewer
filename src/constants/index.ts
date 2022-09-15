@@ -1,5 +1,5 @@
 const SUPPORTED_CHAINS=[
-    'Polygon','Ethereum','Ropsten','Goerli','Rinkeby'
+    'Polygon','Eth','Ropsten','Goerli','Rinkeby'
   ]
 
 export {

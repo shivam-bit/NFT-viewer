@@ -22,18 +22,38 @@ const CollectionsSelect: any = () => {
     activeCollections,
     setActiveCollections,
   } = useContext(UserContext);
+  const { collectionsLoading, setCollectionsLoading } = useContext(AppContext);
+
   const [options, setOptions] = useState([]);
   const handleInputChange = (value) => {
     setActiveCollections([...value]);
   };
   useEffect(() => {
-    NftSDKInstance.getWalletCollections(walletAddress, activeChain).then(
-      (response) => {
-        setAllCollections(response);
-        setOptions(response);
-      }
-    );
+    setCollectionsLoading(true);
+    NftSDKInstance.getWalletCollections(walletAddress, activeChain)
+      .then((userCollections) => {
+        setAllCollections(userCollections);
+        setOptions(userCollections);
+        setCollectionsLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        setCollectionsLoading(false);
+      });
   }, [activeChain]);
+  // useEffect(() => {
+  //   NftSDKInstance.getAllNFTsOfWallet(
+  //     walletAddress,
+  //     activeChain,
+  //     activeCollections,
+  //     allCollections
+  //   ).then((response) => {
+  //     // console.log('🚀 ~ file: view.tsx ~ line 46 ~.then ~ response', response);
+  //     setNftsArray([...response.result]);
+  //   });
+  // }, [activeCollections]);
   return (
     <div
       style={{
@@ -47,7 +67,8 @@ const CollectionsSelect: any = () => {
         instanceId={useId()}
         // components={animatedComponents}
         isMulti
-        name="colors"
+        name="collections"
+        isLoading={collectionsLoading}
         // options={colourOptions}
         // className="basic-multi-select"
         classNamePrefix="collections-select"

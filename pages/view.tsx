@@ -3,6 +3,7 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useContext, useEffect } from 'react';
 import { AppContext, UserContext } from 'src/context/';
+import InfiniteScroll from 'react-infinite-scroll-component';
 import styles from 'src/styles/Home.module.scss';
 import {
   Button,
@@ -11,10 +12,10 @@ import {
   CollectionsSelect,
 } from '../src/components';
 import { GalleryGrid } from '/src/layout/';
-import axiosInstance from '/src/utils/axios';
 import NftSDKInstance from '/src/services/NftSdk';
 const Home: NextPage = () => {
-  const { activateConfetti, isConnected } = useContext(AppContext);
+  const { activateConfetti, isConnected, nftsLoading, setNftsLoading } =
+    useContext(AppContext);
   const {
     walletAddress,
     activeChain,
@@ -22,37 +23,35 @@ const Home: NextPage = () => {
     activeCollections,
     nftsArray,
     setNftsArray,
+    moreResultsAvailable,
+    setMoreResultsAvailable,
   } = useContext(UserContext);
 
   const router = useRouter();
 
   const loadMoreNfts = () => {
-    NftSDKInstance.getAllNFTsOfWallet(walletAddress, activeChain).then(
-      console.log
-    );
+    console.log('🚀 ~ load more nfts');
+    // NftSDKInstance.getNext().then((response) => {
+    //   console.log('🚀 ~ file: view.tsx ~ line 46 ~.then ~ response', response);
+    //   setNftsArray([...nftsArray, ...response.result]);
+    // });
   };
   useEffect(() => {
-    console.log(
-      '🚀 ~ file: view.tsx ~ line 23 ~ NftSDKInstance.getAllNFTsOfWallet ~ response',
-      activeCollections,
-      allCollections
-    );
     NftSDKInstance.getAllNFTsOfWallet(
       walletAddress,
       activeChain,
       activeCollections,
       allCollections
     ).then((response) => {
-      // console.log('🚀 ~ file: view.tsx ~ line 46 ~.then ~ response', response);
       setNftsArray([...response.result]);
+      setMoreResultsAvailable(NftSDKInstance.moreNftsAvailable());
     });
   }, [activeCollections, activeChain]);
 
-  // useEffect(() => {}, [nftsArray]);
-
   useEffect(() => {
     if (!isConnected) router.replace('/');
-  }, []);
+  }, [isConnected]);
+
   return (
     <div className={styles.container}>
       <Head>
@@ -63,12 +62,27 @@ const Home: NextPage = () => {
       <ChainsMenu />
       <CollectionsSelect />
       <main className={styles.main}>
-        <GalleryGrid>
-          {nftsArray.map((nft, index) => {
-            return <NftCard nftMetaDta={nft.metadata} key={index} />;
-          })}
-        </GalleryGrid>
-        <Button triggerOnClick={loadMoreNfts}>Load More</Button>
+        <InfiniteScroll
+          dataLength={nftsArray.length} //This is important field to render the next data
+          next={loadMoreNfts}
+          hasMore={moreResultsAvailable}
+          loader={<h4>Loading...</h4>}
+          endMessage={
+            <p style={{ textAlign: 'center' }}>
+              <img src="/peace.gif" />
+            </p>
+          }
+        >
+          <GalleryGrid>
+            {nftsArray.map((nft, index) => {
+              const data = {
+                ...nft.metadata,
+                token_address: nft.token_address,
+              };
+              return <NftCard nftDta={data} name={nft.name} key={index} />;
+            })}
+          </GalleryGrid>
+        </InfiniteScroll>
       </main>
     </div>
   );

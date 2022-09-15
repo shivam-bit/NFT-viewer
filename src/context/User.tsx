@@ -12,6 +12,7 @@ export const UserContextProvider = ({ children }) => {
   const [allCollections, setAllCollections] = useState([]);
   const [activeCollections, setActiveCollections] = useState([]);
   const [nftsArray, setNftsArray] = useState([]);
+  const [moreResultsAvailable, setMoreResultsAvailable] = useState(false);
   const value = {
     walletAddress,
     setWalletAddress,
@@ -23,6 +24,8 @@ export const UserContextProvider = ({ children }) => {
     setActiveCollections,
     nftsArray,
     setNftsArray,
+    moreResultsAvailable,
+    setMoreResultsAvailable,
   };
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
 };
