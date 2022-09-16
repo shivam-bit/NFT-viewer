@@ -7,11 +7,11 @@ export const AppContext = createContext({});
 export const AppContextProvider = ({ children }) => {
   const supportedChains = SUPPORTED_CHAINS;
 
-  const [isConnected, setIsConnected] = useState(false);
+  const [isConnected, setIsConnected] = useState(true);
   const [collectionsLoading, setCollectionsLoading] = useState(false);
   const [nftsLoading, setNftsLoading] = useState(false);
   const [onboardingStatus, setOnboardingStatus] = useState(
-    ONBOARDING_STATUSES['Not-Started']
+    ONBOARDING_STATUSES['Done']
   );
 
   const activateConfetti = () => {
