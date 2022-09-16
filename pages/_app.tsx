@@ -1,15 +1,16 @@
-import 'src/styles/globals.scss'
-import type { AppProps } from 'next/app'
-import {AppContextProvider} from 'src/context/App';
-import {Canvas} from '../src/components';
+import 'src/styles/globals.scss';
+import type { AppProps } from 'next/app';
+import { AppContextProvider, UserContextProvider } from 'src/context/';
+import { Canvas } from '../src/components';
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <AppContextProvider>
-      <Canvas/>
-      <Component {...pageProps} />
+      <UserContextProvider>
+        <Canvas />
+        <Component {...pageProps} />
+      </UserContextProvider>
     </AppContextProvider>
-  
-  )
+  );
 }
 
-export default MyApp
+export default MyApp;

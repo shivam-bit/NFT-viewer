@@ -1,4 +1,5 @@
 import Button from "./Button";
 import Canvas from "./Canvas";
 import EmojiImage from "./EmojiImage";
-export { Button,Canvas,EmojiImage } ;
+import DataBox from './DataBox';
+export { Button,Canvas,EmojiImage,DataBox } ;
