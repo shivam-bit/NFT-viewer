@@ -1,18 +1,27 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState, useEffect } from 'react';
 import { SUPPORTED_CHAINS } from 'src/constants/';
 
 export const UserContext = createContext({});
 
 export const UserContextProvider = ({ children }) => {
   // 0xFd7736371d52725527294844b95aA92bBD4B8724
-  const [walletAddress, setWalletAddress] = useState(
-    '0xFd7736371d52725527294844b95aA92bBD4B8724'
-  );
+  const [walletAddress, setWalletAddress] = useState('');
   const [activeChain, setActiveChain] = useState(SUPPORTED_CHAINS[0]);
   const [allCollections, setAllCollections] = useState([]);
   const [activeCollections, setActiveCollections] = useState([]);
   const [nftsArray, setNftsArray] = useState([]);
   const [moreResultsAvailable, setMoreResultsAvailable] = useState(false);
+
+  useEffect(() => {
+    const localWalletAddress = localStorage.getItem('walletAddress');
+    console.log({ localWalletAddress });
+    if (localWalletAddress) setWalletAddress(localWalletAddress);
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('walletAddress', walletAddress);
+  }, [walletAddress]);
+
   const value = {
     walletAddress,
     setWalletAddress,

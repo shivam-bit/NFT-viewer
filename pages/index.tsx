@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import { useContext, useEffect } from 'react';
 import { UserContext, AppContext } from 'src/context/';
 import styles from 'src/styles/Home.module.scss';
-import { Button, ConnectCard } from '../src/components';
+import { Button, ConnectCard, OverlayBox, DemoCard } from '../src/components';
 import { ONBOARDING_STATUSES } from 'src/constants/';
 
 const Home: NextPage = () => {
@@ -16,30 +16,37 @@ const Home: NextPage = () => {
     isConnected,
     setIsConnected,
   } = useContext(AppContext);
-  const { setWalletAddress } = useContext(UserContext);
-  // useEffect(() => {
-  //   // if (isConnected) {
-  //   //   setTimeout(() => {
-  //   //     router.push('/view');
-  //   //   }, 2000);
-  //   // }
-  // });
+  const { walletAddress } = useContext(UserContext);
 
   useEffect(() => {
-    const savedWalletAddress = localStorage.getItem('walletAddress');
-    const userOnboardingStatus = localStorage.getItem('onboardingStatus');
-    const userAlreadyConnected = localStorage.getItem('isConnected');
-    console.log({
-      savedWalletAddress,
-      userOnboardingStatus,
-      userAlreadyConnected,
-    });
-    if (savedWalletAddress) setWalletAddress(savedWalletAddress);
-    if (userAlreadyConnected) setIsConnected(true);
-    if (userOnboardingStatus) {
-      setOnboardingStatus(ONBOARDING_STATUSES['Done']);
+    if (isConnected && walletAddress) {
+      // Not a first time user, so immediately redirect
+      if (onboardingStatus === ONBOARDING_STATUSES['Done']) {
+        router.push('/view');
+      } else {
+        setTimeout(() => {
+          router.push('/view');
+        }, 4000);
+        setOnboardingStatus(ONBOARDING_STATUSES['Done']);
+      }
     }
-  }, []);
+  }, [isConnected, walletAddress]);
+
+  // useEffect(() => {
+  //   const savedWalletAddress = localStorage.getItem('walletAddress');
+  //   const userOnboardingStatus = localStorage.getItem('onboardingStatus');
+  //   const userAlreadyConnected = localStorage.getItem('isConnected');
+  //   console.log({
+  //     savedWalletAddress,
+  //     userOnboardingStatus,
+  //     userAlreadyConnected,
+  //   });
+  //   if (savedWalletAddress) setWalletAddress(savedWalletAddress);
+  //   if (userAlreadyConnected) setIsConnected(true);
+  //   if (userOnboardingStatus) {
+  //     setOnboardingStatus(ONBOARDING_STATUSES['Done']);
+  //   }
+  // }, []);
 
   return (
     <div className={styles.container}>
@@ -51,6 +58,9 @@ const Home: NextPage = () => {
       <main className={styles.main}>
         <ConnectCard />
       </main>
+      <OverlayBox>
+        <DemoCard />
+      </OverlayBox>
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState, useEffect } from 'react';
 import { SUPPORTED_CHAINS, ONBOARDING_STATUSES } from 'src/constants/';
 import confettiObject from 'src/utils/confetti';
 
@@ -13,6 +13,33 @@ export const AppContextProvider = ({ children }) => {
   const [onboardingStatus, setOnboardingStatus] = useState(
     ONBOARDING_STATUSES['Not-Started']
   );
+
+  useEffect(() => {
+    const localOnboardingStatus = localStorage.getItem('onboardingStatus');
+    const userAlreadyConnected = JSON.parse(
+      localStorage.getItem('isConnected') || 'false'
+    );
+    console.log({
+      localOnboardingStatus,
+      userAlreadyConnected,
+    });
+
+    if (userAlreadyConnected) {
+      setIsConnected(userAlreadyConnected);
+    }
+    if (localOnboardingStatus) {
+      // setOnboardingStatus(ONBOARDING_STATUSES['Done']);
+      setOnboardingStatus(localOnboardingStatus);
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('isConnected', isConnected);
+  }, [isConnected]);
+
+  useEffect(() => {
+    localStorage.setItem('onboardingStatus', onboardingStatus);
+  }, [onboardingStatus]);
 
   const activateConfetti = () => {
     confettiObject.startConfettiInner();
