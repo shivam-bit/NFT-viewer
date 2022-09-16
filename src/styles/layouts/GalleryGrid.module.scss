@@ -7,8 +7,8 @@
   width: 100%;
 }
 
-.grid > * {
-  //   background-color: red;
-  // justify-self: center;
-  // align-self: center;
+@media (max-width: 720px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
 }
