@@ -41,7 +41,7 @@
   &-logo {
     @include flex($justify: center, $align: center);
     @include circle(4em);
-    background-color: hsla(0deg, 0%, 100%, 0.4);
+    background-color: #ff0080d5;
     border: 1.2px solid #eabfff;
   }
 }

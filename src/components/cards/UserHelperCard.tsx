@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useRouter } from 'next/router';
 import { AppContext, UserContext } from 'src/context/';
-import { EmojiImage, Button, DataBox } from 'src/components';
+import { DataBox } from 'src/components';
 import Image from 'next/image';
 import styles from 'src/styles/modules/DemoCard.module.scss';
 
@@ -36,9 +36,8 @@ const UserHelperCard: any = ({ nftDta, name }) => {
           </footer>
         </div>
       )}
-
       <div
-        className={styles['demo-card-logo']}
+        className={`${styles['demo-card-logo']} confetti-button`}
         onClick={() => setOpenDemoInfo(!openDemoInfo)}
       >
         <img src="/icons8-jake.svg" />

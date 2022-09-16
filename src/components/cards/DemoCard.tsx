@@ -1,11 +1,10 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { AppContext, UserContext } from 'src/context/';
 import { EmojiImage, Button, DataBox } from 'src/components';
-import Image from 'next/image';
 import styles from 'src/styles/modules/DemoCard.module.scss';
 import { ONBOARDING_STATUSES } from 'src/constants';
 
-const DemoCard: any = ({ nftDta, name }) => {
+const DemoCard: any = () => {
   const { activateConfetti, setOnboardingStatus, setIsConnected } =
     useContext(AppContext);
   const { setWalletAddress } = useContext(UserContext);
@@ -29,16 +28,11 @@ const DemoCard: any = ({ nftDta, name }) => {
     }, 4000);
   }, []);
 
-  // console.log(nftMetaDta)
   return (
     <div className={styles['demo-card']}>
       {!openDemoInfo ? null : (
         <div className={styles['demo-card-popover']}>
-          <div>
-            {/* Using this project as part of demo!
-            <br /> */}
-            🤔 Do you wish to use demo account?
-          </div>
+          <div>🤔 Do you wish to use demo account?</div>
           <div className={styles['demo-card-popover-options']}>
             <span onClick={loginUsingDemoAcc}>Yes sure 🔓</span>
             <span onClick={toggleDemoInfoPopover}>No, I am a real user 🎉</span>
