@@ -1,5 +1,5 @@
 import React, { useEffect, useId } from 'react';
-import styles from './ChainsMenu.module.scss';
+import styles from 'src/styles/modules/CollectionsSelect.module.scss';
 import { useState, useContext } from 'react';
 import { AppContext, UserContext } from 'src/context/';
 import Select from 'react-select';
@@ -41,26 +41,23 @@ const CollectionsSelect: any = () => {
   }, [activeChain, walletAddress]);
 
   return (
-    <div
-      style={{
-        maxWidth: '50em',
-        marginLeft: 'auto',
-        marginRight: 'auto',
-      }}
-    >
-      <Select
-        options={options}
-        instanceId={useId()}
-        // components={animatedComponents}
-        isMulti
-        name="collections"
-        isLoading={collectionsLoading}
-        // options={colourOptions}
-        // className="basic-multi-select"
-        classNamePrefix="collections-select"
-        // blurInputOnSelect={true}
-        onChange={handleInputChange}
-      />
+    <div className={styles['collection']}>
+      <span className={styles['collection-title']}>Collections 🗂 </span>
+      <div className={styles['collection-select-wrapper']}>
+        <Select
+          options={options}
+          instanceId={useId()}
+          // components={animatedComponents}
+          isMulti
+          name="collections"
+          isLoading={collectionsLoading}
+          // options={colourOptions}
+          // className="basic-multi-select"
+          classNamePrefix="collections-select"
+          // blurInputOnSelect={true}
+          onChange={handleInputChange}
+        />
+      </div>
     </div>
   );
 };

@@ -1,27 +1,30 @@
-import styles from "./ChainsMenu.module.scss"
-import { useState,useContext } from "react"
-import {AppContext,UserContext} from "src/context/";
+import styles from 'src/styles/modules/ChainsMenu.module.scss';
+import { useState, useContext } from 'react';
+import { AppContext, UserContext } from 'src/context/';
 const ChainMenu: any = () => {
-  const {supportedChains} = useContext(AppContext);
-  const {activeChain,setActiveChain} = useContext(UserContext);
-  
+  const { supportedChains } = useContext(AppContext);
+  const { activeChain, setActiveChain } = useContext(UserContext);
+
   return (
-        <nav 
-        className={styles.navbar}
-        >
-          {
-            supportedChains.map((chain,index)=>{
-            return <div 
-            key={index}
-            className={"switch "+ (activeChain===chain ? 'switch-active' : '')}
-            onClick={()=>setActiveChain(chain)}
+    <div className={styles['chains-menu']}>
+      <div className={styles['chains-menu-title']}> Chains ⛓ </div>
+      <div className={styles['chains-menu-options']}>
+        {supportedChains.map((chain, index) => {
+          return (
+            <div
+              key={index}
+              className={
+                'switch ' + (activeChain === chain ? 'switch-active' : '')
+              }
+              onClick={() => setActiveChain(chain)}
             >
-            <span>{chain}</span>
-          </div>
-          })
-          }
-        </nav>
-  )
-}
+              <span>{chain}</span>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+};
 
 export default ChainMenu;

@@ -10,9 +10,13 @@ import {
   ChainsMenu,
   NftCard,
   CollectionsSelect,
+  UserHelperCard,
+  OverlayBox,
 } from '../src/components';
 import { GalleryGrid } from '/src/layout/';
+
 import NftSDKInstance from '/src/services/NftSdk';
+
 const Home: NextPage = () => {
   const { activateConfetti, isConnected, nftsLoading, setNftsLoading } =
     useContext(AppContext);
@@ -50,8 +54,9 @@ const Home: NextPage = () => {
   }, [activeCollections, activeChain]);
 
   useEffect(() => {
-    if (!isConnected) router.replace('/');
-  }, [isConnected]);
+    if (!isConnected && !localStorage.getItem('isConnected'))
+      router.replace('/');
+  }, []);
 
   return (
     <div className={styles.container}>
@@ -89,6 +94,9 @@ const Home: NextPage = () => {
           </GalleryGrid>
         </InfiniteScroll>
       </main>
+      <OverlayBox>
+        <UserHelperCard />
+      </OverlayBox>
     </div>
   );
 };

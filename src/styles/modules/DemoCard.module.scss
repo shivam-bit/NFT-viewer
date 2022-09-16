@@ -1,0 +1,47 @@
+@import '../mixins';
+
+.demo-card {
+  @include flex(
+    $direction: column,
+    $justify: space-around,
+    $align: flex-end,
+    $gap: 0.5em
+  );
+  padding: 8px;
+
+  &-popover {
+    @include flex(
+      $direction: column,
+      $justify: space-around,
+      $align: center,
+      $gap: 1em
+    );
+    position: relative;
+    right: 2em;
+    background-color: #fff;
+    box-shadow: 0 1px 4px rgb(0 0 0 / 8%);
+    border-radius: 8px;
+    padding: 8px;
+    white-space: nowrap;
+    line-height: 1.5em;
+
+    &-options {
+      @include flex(
+        $direction: row,
+        $justify: space-around,
+        $align: center,
+        $gap: 1em
+      );
+      width: 100%;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  }
+
+  &-logo {
+    @include flex($justify: center, $align: center);
+    @include circle(4em);
+    background-color: #ff0080d5;
+    border: 1.2px solid #eabfff;
+  }
+}

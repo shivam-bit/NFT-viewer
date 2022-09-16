@@ -1,0 +1,41 @@
+@import '../mixins';
+
+.collection {
+  @include flex(
+    $direction: row,
+    $justify: space-between,
+    $align: center,
+    $gap: 1em
+  );
+  background-color: hsla(0, 0%, 100%, 0.4);
+  box-shadow: 0 1px 4px rgb(0 0 0 / 8%);
+  border-radius: 8px;
+  padding: 4px;
+  margin: 1em;
+  max-width: 50em;
+  white-space: nowrap;
+  margin-left: auto;
+  margin-right: auto;
+
+  &-title {
+    font-size: 1.2em;
+    order: -1;
+  }
+
+  &-select-wrapper {
+    width: 100%;
+  }
+
+  &::before {
+    content: '';
+    border: 1px solid #dab6ea;
+    align-self: stretch;
+  }
+}
+
+@media (max-width: 720px) {
+  .collection {
+    flex-direction: column;
+    gap: 0.5em;
+  }
+}
