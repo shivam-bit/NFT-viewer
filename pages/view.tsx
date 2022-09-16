@@ -44,7 +44,7 @@ const Home: NextPage = () => {
       activeCollections,
       allCollections
     ).then((response) => {
-      setNftsArray([...response.result]);
+      setNftsArray([...(response?.result || [])]);
       setMoreResultsAvailable(NftSDKInstance.moreNftsAvailable());
     });
   }, [activeCollections, activeChain]);
@@ -70,7 +70,11 @@ const Home: NextPage = () => {
           loader={<h4>Loading...</h4>}
           endMessage={
             <p style={{ textAlign: 'center' }}>
-              <img src="/peace.gif" />
+              {nftsArray.length > 0 ? (
+                <img src="/peace.gif" />
+              ) : (
+                <img src="/no-results.gif" />
+              )}
             </p>
           }
         >
