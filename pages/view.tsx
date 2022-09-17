@@ -84,8 +84,7 @@ const Home: NextPage = () => {
         <InfiniteScroll
           dataLength={nftsArray.length} //This is important field to render the next data
           next={loadMoreNfts}
-          hasMore={moreResultsAvailable}
-          loader={<h4>Loading...</h4>}
+          hasMore={nftsLoading || moreResultsAvailable}
           endMessage={
             <p style={{ textAlign: 'center' }}>
               {nftsArray.length > 0 ? (
