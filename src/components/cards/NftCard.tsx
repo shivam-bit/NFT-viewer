@@ -1,14 +1,9 @@
-import React, { useContext } from 'react';
-import { AppContext } from 'src/context/';
-import { EmojiImage, Button, DataBox } from 'src/components';
+import React from 'react';
+import { DataBox } from 'src/components';
 import Image from 'next/image';
-import styles from './ConnectCard.module.scss';
 import { formatNftImageUrl } from 'src/utils/responseFormatting';
 import { addEllipsesToText } from 'src/utils/textFormatting';
 const NftCard: any = ({ nftDta, name }) => {
-  const { walletAddress, isConnected, setWalletAddress, setIsConnected } =
-    useContext(AppContext);
-  // console.log(nftMetaDta)
   return (
     <div className="card">
       <Image

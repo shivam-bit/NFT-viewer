@@ -1,5 +1,5 @@
 import axiosInstance from '/src/utils/axios';
-import {formatForReactSelect,convertMetadataToObject} from 'src/utils/responseFormatting.js'
+import {formatForReactSelect,convertMetadataToObject} from 'src/utils/responseFormatting'
 class NftSDK{
   constructor(){
     this.cursor="";
@@ -9,7 +9,6 @@ class NftSDK{
     this.allCollections=[];
   }
   async getWalletCollections(walletAddress: string,activeChain:string){
-    console.log({walletAddress,activeChain})
     try{
       const response = await axiosInstance.get('/wallet/collection',{
         params:{
@@ -26,7 +25,7 @@ class NftSDK{
     }
   }
   async getAllNFTsOfWallet(walletAddress: string,activeChain:string,activeCollections,allCollections,cursor){
-    console.log("🚀 ~ file: NftSdk.ts ~ line 29 ~ NftSDK ~ getAllNFTsOfWallet ~ walletAddress", walletAddress)
+
     try{
       const extractCollectionId = collection => collection.value;
       const collections = activeCollections?activeCollections.map(extractCollectionId):allCollections.map(extractCollectionId);
@@ -45,9 +44,6 @@ class NftSDK{
       this.activeCollections=[...activeCollections];
       this.allCollections=[...allCollections];
 
-      // console.log({response});
-      // console.log(convertMetadataToObject(response?.data?.result))
-      console.log({response});
       response.data.result = convertMetadataToObject(response?.data?.result);
       return response.data;
     }catch(err){

@@ -4,7 +4,10 @@ import {
   DocumentDuplicateIcon,
   ClipboardDocumentCheckIcon,
 } from '@heroicons/react/24/outline';
+
 const DataBox: any = ({ title, data }) => {
+  const [copied, setCopied] = useState(false);
+
   const copyAddressToClipboard = () => {
     setCopied(true);
     navigator.clipboard.writeText(data);
@@ -12,8 +15,6 @@ const DataBox: any = ({ title, data }) => {
       setCopied(false);
     }, 2000);
   };
-
-  const [copied, setCopied] = useState(false);
 
   return (
     <div className="data-box">

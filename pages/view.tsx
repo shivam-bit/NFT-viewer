@@ -6,7 +6,6 @@ import { AppContext, UserContext } from 'src/context/';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import styles from 'src/styles/Home.module.scss';
 import {
-  Button,
   ChainsMenu,
   NftCard,
   CollectionsSelect,
@@ -19,8 +18,8 @@ import { GalleryGrid } from '/src/layout/';
 import NftSDKInstance from '/src/services/NftSdk';
 
 const Home: NextPage = () => {
-  const { activateConfetti, isConnected, nftsLoading, setNftsLoading } =
-    useContext(AppContext);
+  const router = useRouter();
+  const { nftsLoading, setNftsLoading } = useContext(AppContext);
   const {
     walletAddress,
     activeChain,
@@ -31,8 +30,6 @@ const Home: NextPage = () => {
     moreResultsAvailable,
     setMoreResultsAvailable,
   } = useContext(UserContext);
-
-  const router = useRouter();
 
   const loadMoreNfts = () => {
     setNftsLoading(true);

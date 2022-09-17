@@ -1,14 +1,15 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import { useRouter } from 'next/router';
 import { AppContext, UserContext } from 'src/context/';
-import { DataBox, Button } from 'src/components';
+import { Button } from 'src/components';
 import Image from 'next/image';
 import styles from 'src/styles/modules/DemoCard.module.scss';
 
-const UserHelperCard: any = ({ nftDta, name }) => {
-  const { isConnected, setIsConnected } = useContext(AppContext);
-  const { setWalletAddress } = useContext(UserContext);
+const UserHelperCard: any = () => {
   const router = useRouter();
+  const { setIsConnected } = useContext(AppContext);
+  const { setWalletAddress } = useContext(UserContext);
+
   const [openUserInfo, setUserDemoInfo] = useState(false);
 
   const toggleUserInfoBox = () => {
@@ -20,13 +21,11 @@ const UserHelperCard: any = ({ nftDta, name }) => {
     setIsConnected(false);
     router.replace('/');
   };
+
   return (
     <div className={styles['demo-card']}>
       {!openUserInfo ? null : (
         <div className={styles['demo-card-popover']}>
-          {/* <div>
-            🤔 Do you wish to use demo account?
-          </div> */}
           <div className={styles['demo-card-popover-options']}>
             <span onClick={logout}>Seen Enough! Logout 🫡 </span>
           </div>
@@ -47,12 +46,6 @@ const UserHelperCard: any = ({ nftDta, name }) => {
       >
         <img src="/icons8-jake.svg" />
       </Button>
-      {/* <button
-        className={`${styles['demo-card-logo']} confetti-button`}
-        onClick={(e) => toggleUserInfoBox(e)}
-      >
-        <img src="/icons8-jake.svg" />
-      </button> */}
     </div>
   );
 };

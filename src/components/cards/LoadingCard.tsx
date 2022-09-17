@@ -1,13 +1,6 @@
-import React, { useContext } from 'react';
-import { AppContext } from 'src/context/';
-import { EmojiImage, Button, DataBox } from 'src/components';
-import styles from './ConnectCard.module.scss';
 import ContentLoader from 'react-content-loader';
 
-const LoadingCard: any = ({ nftDta, name }) => {
-  const { walletAddress, isConnected, setWalletAddress, setIsConnected } =
-    useContext(AppContext);
-  // console.log(nftMetaDta)
+const LoadingCard: any = () => {
   return (
     <ContentLoader
       speed={2.4}
