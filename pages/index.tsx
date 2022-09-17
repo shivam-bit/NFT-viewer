@@ -20,14 +20,15 @@ const Home: NextPage = () => {
 
   useEffect(() => {
     if (isConnected && walletAddress) {
-      // Not a first time user, so immediately redirect
-      if (onboardingStatus === ONBOARDING_STATUSES['Done']) {
-        router.push('/view');
-      } else {
+      console.log(onboardingStatus, ONBOARDING_STATUSES['Done']);
+      if (onboardingStatus === ONBOARDING_STATUSES['Successful']) {
         setTimeout(() => {
           router.push('/view');
         }, 4000);
         setOnboardingStatus(ONBOARDING_STATUSES['Done']);
+      } else {
+        // Not a first time user, so immediately redirect
+        router.push('/view');
       }
     }
   }, [isConnected, walletAddress]);

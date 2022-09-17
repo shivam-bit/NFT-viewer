@@ -39,10 +39,12 @@ const DemoCard: any = () => {
           </div>
         </div>
       )}
-
-      <div className={styles['demo-card-logo']} onClick={toggleDemoInfoPopover}>
+      <Button
+        triggerOnClick={toggleDemoInfoPopover}
+        classes={styles['demo-card-logo']}
+      >
         <img src="/icons8-jake.svg" />
-      </div>
+      </Button>
     </div>
   );
 };
