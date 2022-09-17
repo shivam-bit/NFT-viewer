@@ -12,7 +12,7 @@ export const formatForReactSelect = (dataArray) =>{
 
 export const formatNftImageUrl = (url) => {
     if(!url){
-        return '/metamask-fox.svg';
+        return 'https://img.icons8.com/external-flaticons-flat-flat-icons/512/000000/external-404-no-code-flaticons-flat-flat-icons.png';
     }
     const ipfsId = url.split('/').at(-1);
     const newUrl = `https://ipfs.io/ipfs/${ipfsId}`;

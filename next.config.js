@@ -4,7 +4,7 @@ const nextConfig = {
   swcMinify: true,
   images: {
     dangerouslyAllowSVG: true,
-    domains: ['ipfs.moralis.io','ipfs.io']
+    domains: ['ipfs.moralis.io','ipfs.io','img.icons8.com']
   },
   typescript: {
     // !! WARN !!
