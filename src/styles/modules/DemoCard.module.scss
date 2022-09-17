@@ -1,37 +1,28 @@
 @import '../mixins';
+@import '../vars/';
 
 .demo-card {
   @include flex(
     $direction: column,
     $justify: space-around,
     $align: flex-end,
-    $gap: 0.5em
+    $gap: 0.5 * $gap
   );
-  padding: 8px;
+  padding: 0.5em;
 
   &-popover {
-    @include flex(
-      $direction: column,
-      $justify: space-around,
-      $align: center,
-      $gap: 1em
-    );
+    @include flex($direction: column, $justify: space-around, $align: center);
     position: relative;
     right: 2em;
     background-color: #fff;
     box-shadow: 0 1px 4px rgb(0 0 0 / 8%);
-    border-radius: 8px;
-    padding: 8px;
+    border-radius: $sm-border-radius;
+    padding: 0.5em;
     white-space: nowrap;
     line-height: 1.5em;
 
     &-options {
-      @include flex(
-        $direction: row,
-        $justify: space-around,
-        $align: center,
-        $gap: 1em
-      );
+      @include flex($direction: row, $justify: space-around, $align: center);
       width: 100%;
       text-decoration: underline;
       cursor: pointer;
@@ -41,7 +32,7 @@
   &-logo {
     @include flex($justify: center, $align: center);
     @include circle(4em);
-    background-color: #ff0080d5;
-    border: 1.2px solid #eabfff;
+    background-color: $color-pink-strong-5;
+    border: 1.2px solid $color-pink-light-5;
   }
 }

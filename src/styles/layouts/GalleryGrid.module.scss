@@ -2,14 +2,11 @@
 
 .grid {
   @extend .grid-3-columns;
-  justify-items: center;
-  align-items: stretch;
-  width: 100%;
 }
 
 @media (max-width: 1080px) {
   .grid {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 

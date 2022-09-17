@@ -19,7 +19,6 @@ const CollectionsSelect: any = () => {
     setActiveCollections([...value]);
   };
   useEffect(() => {
-    console.log(walletAddress);
     setCollectionsLoading(true);
     NftSDKInstance.getWalletCollections(walletAddress, activeChain)
       .then((userCollections) => {

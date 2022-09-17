@@ -2,16 +2,11 @@
 @import '../vars/';
 
 .card {
-  @include flex(
-    $direction: column,
-    $justify: space-between,
-    $align: center,
-    $gap: 1em
-  );
+  @include flex($direction: column, $justify: space-between, $align: center);
   border-radius: $regular-radius;
-  border: 1px solid #fff;
+  border: 1px solid $color-white;
   background: rgba(255, 255, 255, 0.24);
-  backdrop-filter: blur(16px);
+  backdrop-filter: blur(1em);
   padding: 1em 0.75em;
   margin: 1em;
   width: 80%;
@@ -35,7 +30,7 @@
 
   &:hover {
     background: rgba(255, 255, 255, 0.4);
-    border: 1px solid #eabfff;
+    border: 1px solid $color-pink-light-5;
     box-shadow: 0 2px 20px rgba(255, 0, 130, 0.2);
   }
 }

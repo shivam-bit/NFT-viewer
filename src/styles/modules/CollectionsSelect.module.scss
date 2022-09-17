@@ -1,16 +1,12 @@
 @import '../mixins';
+@import '../vars/';
 
 .collection {
-  @include flex(
-    $direction: row,
-    $justify: space-between,
-    $align: center,
-    $gap: 1em
-  );
+  @include flex($direction: row, $justify: space-between, $align: center);
   background-color: hsla(0, 0%, 100%, 0.4);
   box-shadow: 0 1px 4px rgb(0 0 0 / 8%);
-  border-radius: 8px;
-  padding: 4px;
+  border-radius: $sm-input-radius;
+  padding: 0.25em;
   margin: 1em;
   max-width: 50em;
   white-space: nowrap;

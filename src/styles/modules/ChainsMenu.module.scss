@@ -1,17 +1,19 @@
 @import '../mixins';
+@import '../vars/';
+@import '../layouts/grid';
 
 .chains-menu {
   @include flex(
     $direction: row,
     $justify: space-between,
     $align: center,
-    $gap: 0.5em
+    $gap: 0.5 * $gap
   );
   background-color: hsla(0, 0%, 100%, 0.4);
   box-shadow: 0 1px 4px rgb(0 0 0 / 8%);
-  border-radius: 8px;
+  border-radius: $sm-input-radius;
   margin: 1em;
-  padding: 4px 8px;
+  padding: 0.25em 0.5em;
   max-width: fit-content;
   white-space: nowrap;
   margin-left: auto;
@@ -26,13 +28,13 @@
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: 1fr;
-    border-radius: 8px;
+    border-radius: $sm-input-radius;
     max-width: fit-content;
   }
 
   &::before {
     content: '';
-    border: 1px solid #dab6ea;
+    border: 1px solid $color-pink-light-5;
     align-self: stretch;
   }
 }
@@ -40,12 +42,22 @@
 @media (max-width: 720px) {
   .chains-menu {
     flex-direction: column;
-    gap: 0.5em;
+    gap: 0.5 * $gap;
 
     &-options {
-      display: grid;
       grid-template-columns: repeat(3, 1fr);
-      grid-template-rows: auto;
     }
+  }
+}
+
+.switch {
+  @include flex($direction: row, $justify: center, $align: center);
+  border-radius: $sm-border-radius;
+  font-weight: 400;
+  padding: 0.5em 1em;
+  cursor: pointer;
+  &-active {
+    background-color: $color-white;
+    box-shadow: 0 1px 4px rgb(0 0 0 / 8%);
   }
 }

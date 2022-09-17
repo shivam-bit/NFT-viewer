@@ -13,9 +13,9 @@ const ChainMenu: any = () => {
           return (
             <div
               key={index}
-              className={
-                'switch ' + (activeChain === chain ? 'switch-active' : '')
-              }
+              className={`${styles['switch']} ${
+                activeChain === chain ? styles['switch-active'] : ''
+              }`}
               onClick={() => setActiveChain(chain)}
             >
               <span>{chain}</span>
