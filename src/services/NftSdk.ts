@@ -1,5 +1,5 @@
 import axiosInstance from '/src/utils/axios';
-import {formatForReactSelect,convertMetadataToObject} from 'src/utils/responseFormatting.js'
+import {formatForReactSelect,convertMetadataToObject} from 'src/utils/responseFormatting'
 class NftSDK{
   constructor(){
     this.cursor="";
