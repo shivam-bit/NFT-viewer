@@ -67,8 +67,7 @@ const Home: NextPage = () => {
   }, [activeCollections, activeChain, walletAddress]);
 
   useEffect(() => {
-    if (!isConnected && !localStorage.getItem('isConnected'))
-      router.replace('/');
+    if (!JSON.parse(localStorage.getItem('isConnected'))) router.replace('/');
   }, []);
 
   return (
