@@ -25,7 +25,11 @@ const DataBox: any = ({ title, data }) => {
         className="data-box-info data-box-copy"
         onClick={copyAddressToClipboard}
       >
-        {copied ? <ClipboardDocumentCheckIcon /> : <DocumentDuplicateIcon />}
+        {copied ? (
+          <ClipboardDocumentCheckIcon style={{ color: '#91c83c' }} />
+        ) : (
+          <DocumentDuplicateIcon />
+        )}
       </div>
     </div>
   );

@@ -15,6 +15,7 @@
   padding: 1em 0.75em;
   margin: 1em;
   width: 80%;
+  transition: all 0.3s ease-out;
 
   &-title {
     font-weight: $font-semi-bold;

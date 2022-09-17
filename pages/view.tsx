@@ -38,7 +38,7 @@ const Home: NextPage = () => {
     setNftsLoading(true);
     NftSDKInstance.getNext()
       .then((response) => {
-        setNftsArray([...nftsArray, ...response.result]);
+        setNftsArray([...nftsArray, ...(response?.result || [])]);
         setMoreResultsAvailable(NftSDKInstance.moreNftsAvailable());
       })
       .finally(() => {
