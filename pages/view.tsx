@@ -38,7 +38,7 @@ const Home: NextPage = () => {
     setNftsLoading(true);
     NftSDKInstance.getNext()
       .then((response) => {
-        setNftsArray([...nftsArray, ...response.result]);
+        setNftsArray([...nftsArray, ...(response?.result || [])]);
         setMoreResultsAvailable(NftSDKInstance.moreNftsAvailable());
       })
       .finally(() => {
@@ -47,6 +47,7 @@ const Home: NextPage = () => {
   };
   useEffect(() => {
     setNftsLoading(true);
+    setNftsArray([]);
     if (walletAddress) {
       NftSDKInstance.getAllNFTsOfWallet(
         walletAddress,
@@ -67,8 +68,7 @@ const Home: NextPage = () => {
   }, [activeCollections, activeChain, walletAddress]);
 
   useEffect(() => {
-    if (!isConnected && !localStorage.getItem('isConnected'))
-      router.replace('/');
+    if (!JSON.parse(localStorage.getItem('isConnected'))) router.replace('/');
   }, []);
 
   return (
