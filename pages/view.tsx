@@ -12,6 +12,7 @@ import {
   CollectionsSelect,
   UserHelperCard,
   OverlayBox,
+  LoadingCard,
 } from '../src/components';
 import { GalleryGrid } from '/src/layout/';
 
@@ -34,24 +35,36 @@ const Home: NextPage = () => {
   const router = useRouter();
 
   const loadMoreNfts = () => {
-    console.log('🚀 ~ load more nfts');
-    NftSDKInstance.getNext().then((response) => {
-      console.log('🚀 ~ file: view.tsx ~ line 46 ~.then ~ response', response);
-      setNftsArray([...nftsArray, ...response.result]);
-      setMoreResultsAvailable(NftSDKInstance.moreNftsAvailable());
-    });
+    setNftsLoading(true);
+    NftSDKInstance.getNext()
+      .then((response) => {
+        setNftsArray([...nftsArray, ...response.result]);
+        setMoreResultsAvailable(NftSDKInstance.moreNftsAvailable());
+      })
+      .finally(() => {
+        setNftsLoading(false);
+      });
   };
   useEffect(() => {
-    NftSDKInstance.getAllNFTsOfWallet(
-      walletAddress,
-      activeChain,
-      activeCollections,
-      allCollections
-    ).then((response) => {
-      setNftsArray([...(response?.result || [])]);
-      setMoreResultsAvailable(NftSDKInstance.moreNftsAvailable());
-    });
-  }, [activeCollections, activeChain]);
+    setNftsLoading(true);
+    if (walletAddress) {
+      NftSDKInstance.getAllNFTsOfWallet(
+        walletAddress,
+        activeChain,
+        activeCollections,
+        allCollections
+      )
+        .then((response) => {
+          setNftsArray([...(response?.result || [])]);
+          setMoreResultsAvailable(NftSDKInstance.moreNftsAvailable());
+        })
+        .finally(() => {
+          setNftsLoading(false);
+        });
+    } else {
+      setNftsLoading(false);
+    }
+  }, [activeCollections, activeChain, walletAddress]);
 
   useEffect(() => {
     if (!isConnected && !localStorage.getItem('isConnected'))
@@ -91,6 +104,13 @@ const Home: NextPage = () => {
               };
               return <NftCard nftDta={data} name={nft.name} key={index} />;
             })}
+            {nftsLoading ? (
+              <>
+                <LoadingCard />
+                <LoadingCard />
+                <LoadingCard />
+              </>
+            ) : null}
           </GalleryGrid>
         </InfiniteScroll>
       </main>

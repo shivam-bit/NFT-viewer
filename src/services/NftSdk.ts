@@ -26,6 +26,7 @@ class NftSDK{
     }
   }
   async getAllNFTsOfWallet(walletAddress: string,activeChain:string,activeCollections,allCollections,cursor){
+    console.log("🚀 ~ file: NftSdk.ts ~ line 29 ~ NftSDK ~ getAllNFTsOfWallet ~ walletAddress", walletAddress)
     try{
       const extractCollectionId = collection => collection.value;
       const collections = activeCollections?activeCollections.map(extractCollectionId):allCollections.map(extractCollectionId);
