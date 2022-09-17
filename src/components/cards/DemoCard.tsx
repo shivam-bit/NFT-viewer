@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { AppContext, UserContext } from 'src/context/';
-import { EmojiImage, Button, DataBox } from 'src/components';
+import { Button } from 'src/components';
 import styles from 'src/styles/modules/DemoCard.module.scss';
 import { ONBOARDING_STATUSES } from 'src/constants';
 
@@ -17,7 +17,7 @@ const DemoCard: any = () => {
   const loginUsingDemoAcc = () => {
     activateConfetti();
     setOnboardingStatus(ONBOARDING_STATUSES['Successful']);
-    setWalletAddress('0xFd7736371d52725527294844b95aA92bBD4B8724');
+    setWalletAddress(process.env.NEXT_PUBLIC_DEMO_WALLET);
     setIsConnected(true);
     toggleDemoInfoPopover();
   };

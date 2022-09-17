@@ -6,8 +6,8 @@ const Button: any = ({ triggerOnClick, classes, children }) => {
     setTimeout(() => {
       buttonNode.classList.remove('animate');
     }, 500);
-    // TODO: Add analytics event
   };
+
   return (
     <button className={`confetti-button ${classes}`} onClick={onClickHandler}>
       {children}

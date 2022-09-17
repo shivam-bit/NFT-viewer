@@ -19,16 +19,11 @@ export const AppContextProvider = ({ children }) => {
     const userAlreadyConnected = JSON.parse(
       localStorage.getItem('isConnected') || 'false'
     );
-    console.log({
-      localOnboardingStatus,
-      userAlreadyConnected,
-    });
 
     if (userAlreadyConnected) {
       setIsConnected(userAlreadyConnected);
     }
     if (localOnboardingStatus) {
-      // setOnboardingStatus(ONBOARDING_STATUSES['Done']);
       setOnboardingStatus(localOnboardingStatus);
     }
   }, []);

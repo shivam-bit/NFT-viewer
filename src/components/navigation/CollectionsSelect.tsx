@@ -3,18 +3,13 @@ import styles from 'src/styles/modules/CollectionsSelect.module.scss';
 import { useState, useContext } from 'react';
 import { AppContext, UserContext } from 'src/context/';
 import Select from 'react-select';
-import makeAnimated from 'react-select/animated';
 import NftSDKInstance from '/src/services/NftSdk';
-
-const animatedComponents = makeAnimated();
 
 const CollectionsSelect: any = () => {
   const {
     walletAddress,
     activeChain,
-    allCollections,
     setAllCollections,
-    activeCollections,
     setActiveCollections,
   } = useContext(UserContext);
   const { collectionsLoading, setCollectionsLoading } = useContext(AppContext);
@@ -47,14 +42,10 @@ const CollectionsSelect: any = () => {
         <Select
           options={options}
           instanceId={useId()}
-          // components={animatedComponents}
           isMulti
           name="collections"
           isLoading={collectionsLoading}
-          // options={colourOptions}
-          // className="basic-multi-select"
           classNamePrefix="collections-select"
-          // blurInputOnSelect={true}
           onChange={handleInputChange}
         />
       </div>

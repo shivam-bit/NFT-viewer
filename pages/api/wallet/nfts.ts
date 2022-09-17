@@ -1,7 +1,5 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next';
 import Moralis  from 'moralis';
-import { EvmChain } from '@moralisweb3/evm-utils';
 import { createRequestUrlForNFTsInWallet } from 'src/utils/urlFormatting';
 
 type Data = {
@@ -24,6 +22,9 @@ export default async function handler(
       const url = createRequestUrlForNFTsInWallet(wallet,chain,collections,cursor);
       const response = await fetch(url, options).then((response)=> response.json());
       return res.status(200).json( response );
+
+      // TODO: Migrate to moralis sdk when it starts supporting collections
+      
       // const response = await Moralis.EvmApi.nft.getWalletNFTs({
       //   address: wallet,
       //   chain: EvmChain[chain.toUpperCase()],
@@ -39,7 +40,6 @@ export default async function handler(
       // })
       }catch(err){
         console.error(err.message);
-        
       }
   
 }

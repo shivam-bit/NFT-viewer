@@ -4,18 +4,13 @@ import { useRouter } from 'next/router';
 import { useContext, useEffect } from 'react';
 import { UserContext, AppContext } from 'src/context/';
 import styles from 'src/styles/Home.module.scss';
-import { Button, ConnectCard, OverlayBox, DemoCard } from '../src/components';
+import { ConnectCard, OverlayBox, DemoCard } from '../src/components';
 import { ONBOARDING_STATUSES } from 'src/constants/';
 
 const Home: NextPage = () => {
   const router = useRouter();
-  const {
-    activateConfetti,
-    onboardingStatus,
-    setOnboardingStatus,
-    isConnected,
-    setIsConnected,
-  } = useContext(AppContext);
+  const { onboardingStatus, setOnboardingStatus, isConnected } =
+    useContext(AppContext);
   const { walletAddress } = useContext(UserContext);
 
   useEffect(() => {
@@ -32,22 +27,6 @@ const Home: NextPage = () => {
       }
     }
   }, [isConnected, walletAddress]);
-
-  // useEffect(() => {
-  //   const savedWalletAddress = localStorage.getItem('walletAddress');
-  //   const userOnboardingStatus = localStorage.getItem('onboardingStatus');
-  //   const userAlreadyConnected = localStorage.getItem('isConnected');
-  //   console.log({
-  //     savedWalletAddress,
-  //     userOnboardingStatus,
-  //     userAlreadyConnected,
-  //   });
-  //   if (savedWalletAddress) setWalletAddress(savedWalletAddress);
-  //   if (userAlreadyConnected) setIsConnected(true);
-  //   if (userOnboardingStatus) {
-  //     setOnboardingStatus(ONBOARDING_STATUSES['Done']);
-  //   }
-  // }, []);
 
   return (
     <div className={styles.container}>

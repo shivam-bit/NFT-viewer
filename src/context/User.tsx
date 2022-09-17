@@ -4,7 +4,6 @@ import { SUPPORTED_CHAINS } from 'src/constants/';
 export const UserContext = createContext({});
 
 export const UserContextProvider = ({ children }) => {
-  // 0xFd7736371d52725527294844b95aA92bBD4B8724
   const [walletAddress, setWalletAddress] = useState('');
   const [activeChain, setActiveChain] = useState(SUPPORTED_CHAINS[0]);
   const [allCollections, setAllCollections] = useState([]);
@@ -14,7 +13,6 @@ export const UserContextProvider = ({ children }) => {
 
   useEffect(() => {
     const localWalletAddress = localStorage.getItem('walletAddress');
-    console.log({ localWalletAddress });
     if (localWalletAddress) setWalletAddress(localWalletAddress);
   }, []);
 
