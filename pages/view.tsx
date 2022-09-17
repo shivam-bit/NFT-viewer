@@ -47,6 +47,7 @@ const Home: NextPage = () => {
   };
   useEffect(() => {
     setNftsLoading(true);
+    setNftsArray([]);
     if (walletAddress) {
       NftSDKInstance.getAllNFTsOfWallet(
         walletAddress,
